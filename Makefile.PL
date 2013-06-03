@@ -22,6 +22,7 @@ my %WriteMakefileArgs = (
   "PREREQ_PM" => {
     "AnyEvent::HTTPD" => 0,
     "AnyEvent::Mypeople::Client" => 0,
+    "Encode" => 0,
     "JSON::XS" => 0,
     "Moose" => 0,
     "namespace::autoclean" => 0
@@ -30,7 +31,7 @@ my %WriteMakefileArgs = (
     "Test::More" => 0,
     "strict" => 0
   },
-  "VERSION" => "0.0.2",
+  "VERSION" => "0.0.3",
   "test" => {
     "TESTS" => "t/*.t"
   }

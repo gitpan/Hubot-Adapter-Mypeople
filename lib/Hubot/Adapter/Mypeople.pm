@@ -1,6 +1,6 @@
 package Hubot::Adapter::Mypeople;
 {
-  $Hubot::Adapter::Mypeople::VERSION = '0.0.2';
+  $Hubot::Adapter::Mypeople::VERSION = '0.0.3';
 }
 use Moose;
 use namespace::autoclean;
@@ -10,6 +10,7 @@ extends 'Hubot::Adapter';
 use AnyEvent::HTTPD;
 use AnyEvent::Mypeople::Client;
 use JSON::XS;
+use Encode 'decode_utf8';
 
 use Hubot::Message;
 
@@ -75,7 +76,7 @@ sub run {
             my $action  = $req->parm('action');
             my $buddyId = $req->parm('buddyId');
             my $groupId = $req->parm('groupId');
-            my $content = $req->parm('content');
+            my $content = decode_utf8($req->parm('content'));
 
             $req->respond({ content => ['text/plain', 'Your request is succeed'] });
 

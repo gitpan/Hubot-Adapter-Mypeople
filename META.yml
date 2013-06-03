@@ -17,7 +17,8 @@ name: Hubot-Adapter-Mypeople
 requires:
   AnyEvent::HTTPD: 0
   AnyEvent::Mypeople::Client: 0
+  Encode: 0
   JSON::XS: 0
   Moose: 0
   namespace::autoclean: 0
-version: 0.0.2
+version: 0.0.3
