@@ -1,0 +1,10 @@
+Changes
+INSTALL
+LICENSE
+MANIFEST
+META.yml
+Makefile.PL
+README.md
+dist.ini
+lib/Hubot/Adapter/Mypeople.pm
+weaver.ini
