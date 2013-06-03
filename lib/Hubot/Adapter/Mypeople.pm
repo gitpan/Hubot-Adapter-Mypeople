@@ -1,6 +1,6 @@
 package Hubot::Adapter::Mypeople;
 {
-  $Hubot::Adapter::Mypeople::VERSION = '0.0.1';
+  $Hubot::Adapter::Mypeople::VERSION = '0.0.2';
 }
 use Moose;
 use namespace::autoclean;

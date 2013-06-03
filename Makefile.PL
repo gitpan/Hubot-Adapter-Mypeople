@@ -26,10 +26,13 @@ my %WriteMakefileArgs = (
     "Moose" => 0,
     "namespace::autoclean" => 0
   },
-  "TEST_REQUIRES" => {},
-  "VERSION" => "0.0.1",
+  "TEST_REQUIRES" => {
+    "Test::More" => 0,
+    "strict" => 0
+  },
+  "VERSION" => "0.0.2",
   "test" => {
-    "TESTS" => ""
+    "TESTS" => "t/*.t"
   }
 );
 

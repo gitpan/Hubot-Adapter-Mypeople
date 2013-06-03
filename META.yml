@@ -2,7 +2,9 @@
 abstract: 'Interface to the mypeople service for p5-hubot'
 author:
   - 'Hyungsuk Hong <hshong@perl.kr>'
-build_requires: {}
+build_requires:
+  Test::More: 0
+  strict: 0
 configure_requires:
   ExtUtils::MakeMaker: 6.30
 dynamic_config: 0
@@ -18,4 +20,4 @@ requires:
   JSON::XS: 0
   Moose: 0
   namespace::autoclean: 0
-version: 0.0.1
+version: 0.0.2
