@@ -21,8 +21,10 @@ my %WriteMakefileArgs = (
   "NAME" => "Hubot::Adapter::Mypeople",
   "PREREQ_PM" => {
     "AnyEvent::HTTPD" => 0,
-    "AnyEvent::Mypeople::Client" => 0,
+    "AnyEvent::MyPeopleBot::Client" => 0,
     "Encode" => 0,
+    "Hubot::Adapter" => 0,
+    "Hubot::Message" => 0,
     "JSON::XS" => 0,
     "Moose" => 0,
     "namespace::autoclean" => 0
@@ -31,7 +33,7 @@ my %WriteMakefileArgs = (
     "Test::More" => 0,
     "strict" => 0
   },
-  "VERSION" => "0.0.3",
+  "VERSION" => "0.0.4",
   "test" => {
     "TESTS" => "t/*.t"
   }

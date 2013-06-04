@@ -1,6 +1,6 @@
 package Hubot::Adapter::Mypeople;
 {
-  $Hubot::Adapter::Mypeople::VERSION = '0.0.3';
+  $Hubot::Adapter::Mypeople::VERSION = '0.0.4';
 }
 use Moose;
 use namespace::autoclean;
@@ -8,7 +8,7 @@ use namespace::autoclean;
 extends 'Hubot::Adapter';
 
 use AnyEvent::HTTPD;
-use AnyEvent::Mypeople::Client;
+use AnyEvent::MyPeopleBot::Client;
 use JSON::XS;
 use Encode 'decode_utf8';
 
@@ -21,7 +21,7 @@ has httpd => (
 
 has client => (
     is         => 'rw',
-    isa        => 'AnyEvent::Mypeople::Client',
+    isa        => 'AnyEvent::MyPeopleBot::Client',
     lazy_build => 1,
 );
 
@@ -38,6 +38,12 @@ has groups => (
     }
 );
 
+has exit => (
+    is      => 'rw',
+    isa     => 'Bool',
+    default => 0,
+);
+
 sub _build_httpd  { AnyEvent::HTTPD->new(port => $ENV{HUBOT_MYPEOPLE_PORT} || 8080) }
 
 sub send {
@@ -46,7 +52,7 @@ sub send {
     $self->client->send(
         $user->{room},
         join("\n", @strings),
-        undef
+        sub { $self->httpd->stop if $self->exit }
     );
 }
 
@@ -65,7 +71,7 @@ sub run {
         exit;
     }
 
-    $self->client(AnyEvent::Mypeople::Client->new(apikey => $ENV{HUBOT_MYPEOPLE_APIKEY}));
+    $self->client(AnyEvent::MyPeopleBot::Client->new(apikey => $ENV{HUBOT_MYPEOPLE_APIKEY}));
 
     my $httpd = $self->httpd;
 
@@ -155,6 +161,8 @@ sub respond {
 sub close {
     my $self = shift;
 
+    return $self->exit(1) unless $self->count_groups;
+
     my $exit = 0;
     for my $groupId ($self->all_groups) {
         $self->client->exit(
@@ -173,7 +181,19 @@ __PACKAGE__->meta->make_immutable;
 
 1;
 
+__END__
+
 =pod
+
+=encoding utf-8
+
+=head1 NAME
+
+Hubot::Adapter::Mypeople
+
+=head1 VERSION
+
+version 0.0.4
 
 =head1 SYNOPSIS
 
@@ -187,5 +207,16 @@ you should register your own bot via L<http://dna.daum.net/myapi/authapi/mypeopl
 =head1 SEE ALSO
 
 http://dna.daum.net/myapi/authapi/mypeople/new
+
+=head1 AUTHOR
+
+Hyungsuk Hong <hshong@perl.kr>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2013 by Hyungsuk Hong.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
 
 =cut
