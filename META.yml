@@ -15,7 +15,6 @@ meta-spec:
   version: 1.4
 name: Hubot-Adapter-Mypeople
 requires:
-  AnyEvent::HTTPD: 0
   AnyEvent::MyPeopleBot::Client: 0
   Encode: 0
   Hubot::Adapter: 0
@@ -23,4 +22,4 @@ requires:
   JSON::XS: 0
   Moose: 0
   namespace::autoclean: 0
-version: 0.0.4
+version: 0.0.5

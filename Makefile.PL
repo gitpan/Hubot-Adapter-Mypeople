@@ -20,7 +20,6 @@ my %WriteMakefileArgs = (
   "LICENSE" => "perl",
   "NAME" => "Hubot::Adapter::Mypeople",
   "PREREQ_PM" => {
-    "AnyEvent::HTTPD" => 0,
     "AnyEvent::MyPeopleBot::Client" => 0,
     "Encode" => 0,
     "Hubot::Adapter" => 0,
@@ -33,7 +32,7 @@ my %WriteMakefileArgs = (
     "Test::More" => 0,
     "strict" => 0
   },
-  "VERSION" => "0.0.4",
+  "VERSION" => "0.0.5",
   "test" => {
     "TESTS" => "t/*.t"
   }
