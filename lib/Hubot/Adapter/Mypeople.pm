@@ -1,6 +1,6 @@
 package Hubot::Adapter::Mypeople;
 {
-  $Hubot::Adapter::Mypeople::VERSION = '0.0.5';
+  $Hubot::Adapter::Mypeople::VERSION = '0.0.6';
 }
 use Moose;
 use namespace::autoclean;
@@ -78,7 +78,7 @@ sub run {
     my $httpd = $self->robot->httpd;
 
     $httpd->reg_cb(
-        '/' => sub {
+        $ENV{HUBOT_MYPEOPLE_CALLBACK_PATH} || '/' => sub {
             my ( $httpd, $req ) = @_;
 
             my $action  = $req->parm('action');
@@ -190,7 +190,7 @@ Hubot::Adapter::Mypeople
 
 =head1 VERSION
 
-version 0.0.5
+version 0.0.6
 
 =head1 SYNOPSIS
 
@@ -200,6 +200,18 @@ version 0.0.5
 =head1 DESCRIPTION
 
 you should register your own bot via L<http://dna.daum.net/myapi/authapi/mypeople/new>.
+
+=head1 CONFIGURATION
+
+=over
+
+=item * HUBOT_MYPEOPLE_APIKEY
+
+=item * HUBOT_MYPEOPLE_CALLBACK_PATH
+
+'/' is default to use.
+
+=back
 
 =head1 SEE ALSO
 
